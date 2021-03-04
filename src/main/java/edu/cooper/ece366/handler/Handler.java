@@ -32,8 +32,8 @@ public class Handler {
   }
 
   public Feed getFeed(Request request) {
-    String cookie = request.cookie("coopflixuser");
-    User userFromCookie = authStore.getUser(cookie).get();
+    String token = request.headers("coopflixuser");
+    User userFromCookie = authStore.getUser(token).get();
     User userFromRequest = getUser(request);
     if (userFromCookie != userFromRequest) {
       // throw or return
@@ -58,7 +58,7 @@ public class Handler {
   }
 
   public Object logout(final Request req, final Response res) {
-    authStore.invalidate(req.cookie("coopflixuser"));
+    authStore.invalidate(req.headers("coopflixuser"));
     res.status(200);
 
     return null;

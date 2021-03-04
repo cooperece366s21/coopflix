@@ -30,9 +30,12 @@ public class AuthStoreImpl implements AuthStore {
   }
 
   @Override
-  public void invalidate(final String cookie) {
-    User user = reverseMap.get(cookie);
+  public void invalidate(final String token) {
+    User user = reverseMap.getOrDefault(token, null);
+    if (user == null) {
+      return;
+    }
     tokenMap.remove(user);
-    reverseMap.remove(cookie);
+    reverseMap.remove(token);
   }
 }
