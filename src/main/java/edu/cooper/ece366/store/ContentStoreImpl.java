@@ -17,7 +17,12 @@ public class ContentStoreImpl implements ContentStore {
   static {
     List<Content> content =
         List.of(
-            new MovieBuilder().genre(Genre.COMEDY).title("Ferris Bueller").rating(Rating.PG13).id("1").build(),
+            new MovieBuilder()
+                .genre(Genre.COMEDY)
+                .title("Ferris Bueller")
+                .rating(Rating.PG13)
+                .id("1")
+                .build(),
             new MovieBuilder().genre(Genre.COMEDY).title("My Cousin Vinny").id("2").build(),
             new MovieBuilder().genre(Genre.COMEDY).title("Pink Panther").id("3").build(),
             new MovieBuilder().genre(Genre.HORROR).title("Scream").id("4").build(),
@@ -58,7 +63,5 @@ public class ContentStoreImpl implements ContentStore {
   }
 
   @Override
-  public void playContent(final String id, final User user) {
-  }
-
+  public void playContent(final String id, final User user) {}
 }
