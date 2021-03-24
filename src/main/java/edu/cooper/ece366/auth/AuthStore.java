@@ -15,5 +15,4 @@ public interface AuthStore {
 
   // invalidates cookie
   void invalidate(String cookie);
-
 }

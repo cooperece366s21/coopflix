@@ -8,5 +8,4 @@ public interface PlayableContent extends Content {
   Optional<Integer> length();
 
   Optional<String> description();
-
 }

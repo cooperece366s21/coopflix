@@ -19,7 +19,11 @@ public interface Content {
   Optional<Rating> rating();
 
   enum Genre {
-    COMEDY, HORROR, MYSTERY, ACTION, DRAMA
+    COMEDY,
+    HORROR,
+    MYSTERY,
+    ACTION,
+    DRAMA
   }
 
   enum Rating {

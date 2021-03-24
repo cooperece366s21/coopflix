@@ -7,5 +7,4 @@ public interface Auth {
   String username();
 
   String password();
-
 }
