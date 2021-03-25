@@ -1,6 +1,7 @@
 package edu.cooper.ece366.model;
 
 import io.norberg.automatter.AutoMatter;
+import java.util.Arrays;
 import java.util.Optional;
 
 @AutoMatter
@@ -23,7 +24,13 @@ public interface Content {
     HORROR,
     MYSTERY,
     ACTION,
-    DRAMA
+    DRAMA;
+
+    public static Genre fromDbValue(String dbValue) {
+      return Arrays.asList(Genre.values()).stream()
+          .filter(s -> dbValue.equalsIgnoreCase(s.name()))
+          .findFirst().orElseThrow();
+    }
   }
 
   enum Rating {

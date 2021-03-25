@@ -14,13 +14,17 @@ import edu.cooper.ece366.handler.Handler;
 import edu.cooper.ece366.model.User;
 import edu.cooper.ece366.model.UserBuilder;
 import edu.cooper.ece366.service.FeedServiceImpl;
+import edu.cooper.ece366.store.ContentStore;
 import edu.cooper.ece366.store.ContentStoreImpl;
-import edu.cooper.ece366.store.UserStoreImpl;
+import edu.cooper.ece366.store.CoopflixJdbi;
+import edu.cooper.ece366.store.UserStore;
+import edu.cooper.ece366.store.UserStoreMysql;
 import io.norberg.automatter.AutoMatter;
 import io.norberg.automatter.gson.AutoMatterTypeAdapterFactory;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import org.jdbi.v3.core.Jdbi;
 import spark.Request;
 import spark.Response;
 import spark.ResponseTransformer;
@@ -44,10 +48,18 @@ public class App {
 
     initExceptionHandler(Throwable::printStackTrace);
 
+    //    UserStore userStore = new UserStoreImpl();
+    String jdbcUrl = "jdbc:mysql://localhost:3306/coopflix?serverTimezone=UTC";
+    // jdbi is the "database client," which all re-implemented stores should accept as a dependency
+    Jdbi jdbi = CoopflixJdbi.create(jdbcUrl);
+
+    UserStore userStore = new UserStoreMysql(jdbi);
+    ContentStore contentStore = new ContentStoreImpl();
+
     Handler handler =
         new Handler(
-            new UserStoreImpl(),
-            new FeedServiceImpl(new ContentStoreImpl()),
+            userStore,
+            new FeedServiceImpl(contentStore),
             new AuthStoreImpl(),
             gson);
 

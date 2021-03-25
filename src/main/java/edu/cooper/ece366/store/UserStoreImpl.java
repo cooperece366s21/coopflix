@@ -2,6 +2,7 @@ package edu.cooper.ece366.store;
 
 import edu.cooper.ece366.model.Content.Genre;
 import edu.cooper.ece366.model.User;
+import edu.cooper.ece366.model.User.Subscription;
 import edu.cooper.ece366.model.UserBuilder;
 import java.util.List;
 import java.util.Map;
@@ -38,5 +39,10 @@ public class UserStoreImpl implements UserStore {
   @Override
   public User get(final String id) {
     return userMap.get(id);
+  }
+
+  @Override
+  public User add(final String name, final Subscription subscription) {
+    return null;
   }
 }
