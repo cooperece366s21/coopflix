@@ -41,6 +41,12 @@ public interface UserDao {
   @RegisterRowMapper(UserRowMapper.class)
   User getUser(@Bind("id") String id);
 
+  // "returning *" only works in postgres :(
+  //  @SqlQuery(
+  //      "insert into users (id, name, subscription) values (:id, :name, :subscription) returning
+  // *")
+  //  @RegisterArgumentFactory(SubscriptionArgumentFactory.class)
+  //  @RegisterRowMapper(UserRowMapper.class)
   @SqlUpdate("insert into users (id, name, subscription) values (:id, :name, :subscription)")
   void insertUser(
       @Bind("id") String id,
