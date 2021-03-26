@@ -1,6 +1,6 @@
 # coopflix
 
-Basic Netflix clone to serve as an example for modeling your own projects and getting a feel for basic code hierarchy/architecture.
+Basic Netflix clone to serve as an example for modeling ECE366 projects and getting a feel for basic code hierarchy/architecture.
 
 ## Basic system diagram
 
